@@ -105,3 +105,31 @@ a small change. Just add `mut` after the `let` like.
 </pre>
 
 Now when we run it we get `Hello 20!` just like we might expect.
+
+## Let's ask for a name
+
+Right now the program does the same thing every time it runs. That's a bit
+boring. Lets add some user input
+<pre>
+        <b>use std::io;</b>
+        <br/>
+        fn main() {
+        	let mut i = <b>String:new();</b>
+        	<b>io::stdin().read_line(&mut buf);</b>
+            println!("Hello {}!", i);
+        }
+</pre>
+
+When we run it now it pauses and waits if we enter some text and hit enter we
+get.
+
+        Isaac
+        Hello Isaac
+        !
+
+or something similar. The problem is that we didn't strip off the new line char
+at the end of our input. Lets not worry about that for now though. We also got
+a warning when we ran this. `warning: unused result which must be used,
+#[warn(unused_must_use)] on by default` This is because errors may have been
+returned by this function. Let's handle them totally safely
+
