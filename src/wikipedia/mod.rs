@@ -66,7 +66,7 @@ pub fn get_pages(n: u32) ->  Result<Vec<u64>, Error> {
 
 pub fn get_conent(id: u64) ->  Result<String, Error>  {
     let client = Client::new();
-    let page_api: String = format!("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=&pageids={}&explaintext=1&exsectionformat=plain", id);
+    let page_api: String = format!("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&pageids={}&explaintext=1&exsectionformat=plain", id);
     let mut res = try!(client.get(&page_api).send());
     let mut buf = String::new();
     try!(res.read_to_string(&mut buf));

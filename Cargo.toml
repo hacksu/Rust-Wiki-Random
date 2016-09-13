@@ -5,4 +5,5 @@ authors = ["Isaac Park <isaac.a.park@gmail.com>"]
 
 [dependencies]
 hyper = "*"
+rand = "*"
 rustc-serialize = "*"
