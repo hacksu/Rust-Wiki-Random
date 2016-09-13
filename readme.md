@@ -114,8 +114,8 @@ boring. Lets add some user input
         <b>use std::io;</b>
         <br/>
         fn main() {
-        	let mut i = <b>String:new();</b>
-        	<b>io::stdin().read_line(&mut buf);</b>
+        	let mut i = <b>String::new();</b>
+        	<b>io::stdin().read_line(&mut i);</b>
             println!("Hello {}!", i);
         }
 </pre>
@@ -133,3 +133,17 @@ a warning when we ran this. `warning: unused result which must be used,
 #[warn(unused_must_use)] on by default` This is because errors may have been
 returned by this function. Let's handle them totally safely
 
+## Handle result
+
+<pre>
+        use std::io;
+        <br/>
+        fn main() {
+            let mut i = String::new();
+            <b>i = match io::stdin().read_line(&mut i) {
+                Ok(_) => i.trim().to_string(),
+                _ => "".to_string()
+            };</b>
+            println!("Hello {}!", i);
+        }
+</pre>
