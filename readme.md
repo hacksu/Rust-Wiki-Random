@@ -147,3 +147,15 @@ returned by this function. Let's handle them totally safely
             println!("Hello {}!", i);
         }
 </pre>
+
+__
+This is quite a bit of complicated code. so lets go over it. First the `match`
+keyword. This can be thought of as similar to a switch in c++, but it returns a
+value and it involves something called pattern matching. Basically it looks and
+sees if one set of values like `Ok("test")` matches a pattern. Because we don't
+care about the value inside the test we just put the `_` which will select for
+anything.
+
+For each of the cases we give a value to return. Here we trim the string and
+thing turns it back into a string again. If we have anything else for example
+`Err(_)` we can return an empty string.
