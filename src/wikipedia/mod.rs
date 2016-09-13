@@ -37,7 +37,7 @@ impl From<json::ParserError> for Error{
 pub fn get_pages(n: u32) ->  Result<Vec<u64>, Error> {
     let client = Client::new();
 
-    let list_api: String = format!("https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit={}", n);
+    let list_api: String = format!("https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit={}", n);
 
     let mut res = try!(client.get(&list_api).send());
 
@@ -62,4 +62,22 @@ pub fn get_pages(n: u32) ->  Result<Vec<u64>, Error> {
         };
     };
     return Ok(result);
+}
+
+pub fn get_conent(id: u64) ->  Result<String, Error>  {
+    let client = Client::new();
+    let page_api: String = format!("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=&pageids={}&explaintext=1&exsectionformat=plain", id);
+    let mut res = try!(client.get(&page_api).send());
+    let mut buf = String::new();
+    try!(res.read_to_string(&mut buf));
+    let data = try!(Json::from_str(&buf[..]));
+    let object = try!(data.as_object().ok_or(Error::Str("Not object")));
+    let query = try!(object.get("query").ok_or(Error::Str("no query")));
+    let query = try!(query.as_object().ok_or(Error::Str("query not object")));
+    let pages = try!(query.get("pages").ok_or(Error::Str("no pages")));
+    let pages = try!(pages.as_object().ok_or(Error::Str("pages is not an object")));
+    let page = try!(pages.get(&id.to_string()).ok_or(Error::Str("can't find the page")));
+    let page = try!(page.as_object().ok_or(Error::Str("the page is not an object")));
+    let extract = try!(page.get("extract").ok_or(Error::Str("can't find extract")));
+    return Ok(try!(extract.as_string().ok_or(Error::Str("extract not string"))).to_string());
 }
