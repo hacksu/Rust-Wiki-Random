@@ -7,8 +7,6 @@ use rand::Rng;
 use rand::distributions::{Sample, Range};
 
 fn main() {
-    println!("Hello World!");
-    let mut rng = rand::thread_rng();
     let mut pages: Vec<Vec<String>> = vec![];
     if let Ok(page_ids) = get_pages(2) {
         for page_id in page_ids{
@@ -21,7 +19,8 @@ fn main() {
             }
         }
     }
-    //println!("{:?}", pages);
+    let mut rng = rand::thread_rng();
+
     let single_pos = rng.gen_range(0, 3);
     println!("{}", single_pos);
     for i in 0..3 {
