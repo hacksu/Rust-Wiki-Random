@@ -1,0 +1,8 @@
+[package]
+name = "rust-lang"
+version = "0.1.0"
+authors = ["Isaac Park <isaac.a.park@gmail.com>"]
+
+[dependencies]
+#hyper = "*"
+#rustc-serialize = "*"
