@@ -1,5 +1,5 @@
 [package]
-name = "rust-lang"
+name = "rust-wiki-rand"
 version = "0.1.0"
 authors = ["Isaac Park <isaac.a.park@gmail.com>"]
 
