@@ -1,10 +1,12 @@
-# Rust Wiki-Rand
+# Rust Wiki Rand
 
 Say that 10 times fast.
 
 Anyway. We'll talking about Rust today. To follow the talk you'll need to have
 Rust installed on computer. If you don't already now would be a good time to
 install it. Go to https://www.rust-lang.org/ and follow the instructions there.
+One that's installed go to https://github.com/hacksu/Rust-Wiki-Random and
+download the repository.
 
 If anything confuses you don't hesitate to stop someone and ask them what to do.
 
@@ -33,3 +35,33 @@ ended up not getting through everything last week. This is a really rough into.
 I can only suggest if you want to get better at it make a project with it. This
 project is the start of one such possible project. If you like it make more with
 it.
+
+## Cargo and Hello World
+
+One of the advantages I didn't mention with Rust is it's superior
+standardization. I almost feel bad saying this, but the amount of trouble I've
+had trying to install relatively simple C++ libraries is incredible. Node has
+npm. Python has pip. C++ has nothing. Rust though has Cargo. Cargo is similar to
+npm if your familiar with that. It's both a build system and a dependency
+system. It Will collect all our dependencies and turn them into one executable.
+We can even tell it to run our project and compile at the same time.
+
+To start with just download and extract or clone the repository at
+https://github.com/hacksu/Rust-Wiki-Random and cd into it in your terminal. Then
+run `cargo run`. It should compile the project and spit out `Hello World!`. If
+it doesn't something been installed wrong.
+
+Open the folder in your text editor of choice. I find Atom can be opened with
+`atom .` Take a look at `main.rs` (it may help to install language support).
+
+Right now it just has:
+
+        fn main() {
+            println!("Hello World!")
+        }
+Like many languages when the executable is run, the `main` function is called.
+In rust functions are defined with the fn keyword. The next line should also
+make sense to to people who've programmed in other languages. It's a "function"
+call to print the string it's passed (actually a macro, we'll get to that in a
+sec).
+
