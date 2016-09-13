@@ -65,3 +65,43 @@ make sense to to people who've programmed in other languages. It's a "function"
 call to print the string it's passed (actually a macro, we'll get to that in a
 sec).
 
+## Let's do math for fun and... profit?
+
+This is probably the most boring program ever lets do stuff, math to start.
+<pre>
+        fn main() {
+            <b>let i = 19;</b>
+            <b>println!("Hello {}!", i);</b>
+        }
+</pre>
+
+When you run this with `cargo run` you should see `Hello 19!`. The reason I said
+`println!` is a macro not a function is visible here. It's actually at compile
+time turning `println!("Hello {}!", i);` into something much uglier that happens
+to print i just the way we want it to. This also means though that things like
+the number of arguments passed can be checked at compile time.
+
+There is isn't much math yet:
+
+<pre>
+        fn main() {
+            <b>let i = 19;</b>
+            <b>i+= 1;</b>
+            <b>println!("Hello {}!", i);</b>
+        }
+</pre>
+
+Run it and you get... a compiler error. Why? Well it tells us `error:
+re-assignment of immutable variable`. This is a bit strange but in Rust we need
+to say if and when we want a variable that can be changed. That's mutable. It's
+a small change. Just add `mut` after the `let` like.
+
+<pre>
+        fn main() {
+            let <b>mut</b> i = 19;
+            i+= 1;
+            println!("Hello {}!", i);
+        }
+</pre>
+
+Now when we run it we get `Hello 20!` just like we might expect.
